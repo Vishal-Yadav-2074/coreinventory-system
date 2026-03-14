@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - CoreInventory</title>
+</head>
+<body>
+    <h1>Inventory Dashboard</h1>
+
+    <p><a href="{{ url_for('product.products') }}">Products</a> |
+    <a href="{{ url_for('warehouse.warehouses') }}">Warehouses</a> |
+    <a href="{{ url_for('receipt.receipts') }}">Receipts</a> |
+    <a href="{{ url_for('delivery.deliveries') }}">Deliveries</a> |
+    <a href="{{ url_for('transfer.transfers') }}">Transfers</a> |
+    <a href="{{ url_for('adjustment.adjustments') }}">Adjustments</a> |
+    <a href="{{ url_for('ledger.ledger') }}">Ledger</a> |
+    <a href="{{ url_for('auth.logout') }}">Logout</a></p>
+
+    <h3>KPI</h3>
+    <p>Total Products in Stock: {{ total_products_in_stock }}</p>
+    <p>Low Stock Items: {{ low_stock_items }}</p>
+    <p>Out of Stock Items: {{ out_of_stock_items }}</p>
+    <p>Pending Receipts: {{ pending_receipts }}</p>
+    <p>Pending Deliveries: {{ pending_deliveries }}</p>
+    <p>Scheduled Transfers: {{ scheduled_transfers }}</p>
+</body>
+</html>
