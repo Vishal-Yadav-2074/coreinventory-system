@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adjustments</title>
+</head>
+<body>
+    <h2>Stock Adjustments</h2>
+    <p><a href="{{ url_for('dashboard.dashboard') }}">Back to Dashboard</a></p>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <select name="product_id" required>
+            <option value="">Select Product</option>
+            {% for p in products %}
+            <option value="{{ p.id }}">{{ p.name }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="warehouse_id" required>
+            <option value="">Select Warehouse</option>
+            {% for w in warehouses %}
+            <option value="{{ w.id }}">{{ w.name }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="number" step="0.01" name="counted_quantity" placeholder="Counted Quantity" required>
+        <input type="text" name="reason" placeholder="Reason">
+        <button type="submit">Adjust Stock</button>
+    </form>
+
+    <hr>
+
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Adjustment No</th>
+            <th>Product</th>
+            <th>Warehouse</th>
+            <th>Old Qty</th>
+            <th>Counted Qty</th>
+            <th>Difference</th>
+            <th>Reason</th>
+        </tr>
+        {% for a in adjustments %}
+        <tr>
+            <td>{{ a.adjustment_no }}</td>
+            <td>{{ a.product.name }}</td>
+            <td>{{ a.warehouse.name }}</td>
+            <td>{{ a.old_quantity }}</td>
+            <td>{{ a.counted_quantity }}</td>
+            <td>{{ a.difference }}</td>
+            <td>{{ a.reason }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
